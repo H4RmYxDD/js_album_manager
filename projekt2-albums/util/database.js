@@ -42,7 +42,7 @@ export async function initializeDatabase() {
     const rows = await dbAll("SELECT * FROM albums");
     if (rows.length === 0) {
         await dbRun(
-            "INSERT INTO albums (title, artist, releaseDate, genre, coverURL) VALUES ('UTOPIA', 'Travis Scott', '2023-07-28', 'Hip-Hop', 'https://images.genius.com/93c577bcd2cce45a2e7063978bcb3b1a.1000x1000x1.png')"
+            "INSERT INTO albums (title, artist, releaseDate, genre, coverUrl) VALUES ('UTOPIA', 'Travis Scott', '2023-07-28', 'Hip-Hop', 'https://images.genius.com/93c577bcd2cce45a2e7063978bcb3b1a.1000x1000x1.png')"
         );
     }
 }
@@ -59,7 +59,7 @@ export async function resetIds() {
     );
 
     // Step 4: Copy data back to the original table
-    await dbRun("INSERT INTO albums (title, artist, releaseDate, genre, coverURL) VALUES ('UTOPIA', 'Travis Scott', '2023-07-28', 'Hip-Hop', 'https://images.genius.com/93c577bcd2cce45a2e7063978bcb3b1a.1000x1000x1.png')");
+    await dbRun("INSERT INTO albums (title, artist, releaseDate, genre, coverUrl) VALUES ('UTOPIA', 'Travis Scott', '2023-07-28', 'Hip-Hop', 'https://images.genius.com/93c577bcd2cce45a2e7063978bcb3b1a.1000x1000x1.png')");
 
     // Step 5: Drop the temporary table
     await dbRun("DROP TABLE temp_albums");
