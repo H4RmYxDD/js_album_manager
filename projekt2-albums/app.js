@@ -35,8 +35,7 @@ app.get("/albums/:id", async (req, res) => {
 });
 
 app.post("/albums", async (req, res) => {
-  console.log("Received data:", req.body); // Debugging
-
+  console.log("Received data:", req.body); 
   const { title, artist, releaseDate, genre, coverUrl } = req.body;
 
   if (!title || !artist || !releaseDate || !genre) {
@@ -80,7 +79,6 @@ app.delete("/albums/:id", async (req, res) => {
       return res.status(404).json({ message: "Album not found" });
   }
 
-  // Delete the specific album by ID
   await dbRun("DELETE FROM albums WHERE id = ?", [id]);
 
   res.status(200).send("Album deleted successfully");

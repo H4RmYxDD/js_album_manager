@@ -47,20 +47,15 @@ export async function initializeDatabase() {
     }
 }
 export async function resetIds() {
-    // Step 1: Copy remaining rows to a temporary table
     await dbRun("CREATE TABLE temp_albums AS SELECT title, artist, releaseDate, genre, coverUrl FROM albums");
 
-    // Step 2: Drop the original table
     await dbRun("DROP TABLE albums");
 
-    // Step 3: Recreate the original table
     await dbRun(
         "CREATE TABLE albums (id INTEGER PRIMARY KEY AUTOINCREMENT, title STRING, artist INTEGER, releaseDate DATE, genre STRING, coverUrl STRING)"
     );
 
-    // Step 4: Copy data back to the original table
     await dbRun("INSERT INTO albums (title, artist, releaseDate, genre, coverUrl) VALUES ('UTOPIA', 'Travis Scott', '2023-07-28', 'Hip-Hop', 'https://images.genius.com/93c577bcd2cce45a2e7063978bcb3b1a.1000x1000x1.png')");
 
-    // Step 5: Drop the temporary table
     await dbRun("DROP TABLE temp_albums");
 }

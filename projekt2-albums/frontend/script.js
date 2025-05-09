@@ -22,16 +22,14 @@ function renderAlbums(data) {
         return;
     }
 
-    albumsContainer.innerHTML = ""; // Clear existing albums
+    albumsContainer.innerHTML = "";
 
-    // Sort albums by artist name
     data.sort((a, b) => a.artist.localeCompare(b.artist));
 
-    // Render sorted albums
     data.forEach(entry => {
         const card = document.createElement("div");
         card.className = "album-card";
-        card.style.backgroundImage = `url('${entry.coverUrl || "https://via.placeholder.com/300x400"}')`; // Use album cover URL or a placeholder
+        card.style.backgroundImage = `url('${entry.coverUrl || "https://via.placeholder.com/300x400"}')`;
         card.innerHTML = `
             <div class="album-overlay">
                 <h3>${entry.title}</h3>
@@ -74,7 +72,7 @@ function hideForm() {
 }
 
 async function submitForm(event) {
-    event.preventDefault(); // Prevent the form from refreshing the page
+    event.preventDefault();
 
     const id = document.getElementById("entry-id").value;
     const title = document.getElementById("title").value;
@@ -100,7 +98,7 @@ async function submitForm(event) {
         }
 
         hideForm();
-        fetchAlbums(); // Refresh the album list
+        fetchAlbums(); 
     } catch (error) {
         console.error("Error submitting form:", error);
     }
